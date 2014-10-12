@@ -19,3 +19,4 @@ Notes:
 * Used http://cdnjs.com/ to reference js libraries.
 * Used Q's promise (https://github.com/kriskowal/q) to avoid 'Pyramid of Doom' in JS async programming pattern.
 * Used JQuery, JQuery mobile and knockout JS libraries.
+* Used sublime JsDocs (https://github.com/spadgos/sublime-jsdocs) to generate JsDocs.
