@@ -10,7 +10,7 @@ describe("DataAccess", function() {
 				done();
 			})
 			.catch(function(error){
-				throw error;
+				assert.notOk(JSON.stringify(error));
 				done();
 			});
 		});
