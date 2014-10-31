@@ -1,14 +1,22 @@
 (function(global, $, Q, S, undefined) {
 	"use strict";
 
-	/**
-	 * Logs the message to console.
-	 *
-	 * @param  The message.
-	 */
-	var log = function(message){
-		console.log(message);
-	};
+	var Log = (function(){
+		// Log utility function.
+		function Log(){
+		};
 
-	S.log = log;	
+		/**
+		 * Logs the message to console.
+		 *
+		 * @param  The message.
+		 */
+		Log.write = function(message){
+			console.log(message);
+		};
+
+		return Log;
+	})();
+
+	S.log = Log;	
 })(window, window.$, window.Q, window.S);

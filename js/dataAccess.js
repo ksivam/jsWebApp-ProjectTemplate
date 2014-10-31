@@ -1,49 +1,52 @@
 (function(global, $, Q, S, undefined){
 	"use strict";
 
-	var that = this,
-	ajax = function(url, type, data) {
-		return Q.Promise(function(resolve){
-		    $.ajax({
-		        url: url,
-		        type: type,
-		        data: JSON.stringfy(data),
-		        dataType: "json"
-		    }).then(function (data, textStatus, jqXHR) {
-		        delete jqXHR.then; // treat xhr as a non-promise
-		        resolve(jqXHR);
-		    }, function (jqXHR, textStatus, errorThrown) {
-		        delete jqXHR.then; // treat xhr as a non-promise
-		        resolve(jqXHR);
-		    });			
-		});
-	}, 
-	get = function(url, data) {
-		return that.ajax(url, "GET", data);
-	},
-	put = function() {
-		var defer = Q.defer();
-		
-		return defer.promise;
-	},
-	post = function() {
-		var defer = Q.defer();
-		
-		return defer.promise;
-	},
-	del = function() {
-		var defer = Q.defer();
-		
-		return defer.promise;
-	};
+	var DataAccess = (function() {
+		function DataAccess() {
+		};
 
-	S.dataAccess = {
-		get: get,
-		put: put,
-		post: post,
-		del: del
-	};
+		DataAccess.prototype._ajax = function(url, type, data) {
+			return Q.Promise(function(resolve){
+			    $.ajax({
+			        url: url,
+			        type: type,
+			        data: data ? JSON.stringfy(data) : data,
+			        dataType: "json"
+			    }).then(function (data, textStatus, jqXHR) {
+			        delete jqXHR.then; // treat xhr as a non-promise
+			        resolve(jqXHR);
+			    }, function (jqXHR, textStatus, errorThrown) {
+			        delete jqXHR.then; // treat xhr as a non-promise
+			        resolve(jqXHR);
+			    });			
+			});
+		};
 
-S.dataAccess.get("dgfdg", {hello: "world"});
+		DataAccess.prototype.get = function(url, data) {
+			return this._ajax(url, "GET", data);
+		};
+
+		DataAccess.prototype.put = function() {
+			var defer = Q.defer();
+			
+			return defer.promise;
+		};
+
+		DataAccess.prototype.post = function() {
+			var defer = Q.defer();
+			
+			return defer.promise;
+		};
+
+		DataAccess.prototype.del = function() {
+			var defer = Q.defer();
+			
+			return defer.promise;
+		};
+
+		return new DataAccess();
+	})();
+
+	S.dataAccess = DataAccess;
 
 })(window, window.$, window.Q, window.S);
