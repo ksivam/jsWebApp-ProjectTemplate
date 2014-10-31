@@ -58,13 +58,4 @@
 
 	S.dataAccess = DataAccess;
 
-	S.dataAccess
-	.get("http://localhost:21214")
-	.then(function(response){
-		S.log.write("result: " + JSON.stringify(response));
-	})
-	.catch(function(error){
-		S.log.write("error: " + JSON.stringify(error));
-	});
-
 })(window, window.$, window.Q, window.S);
