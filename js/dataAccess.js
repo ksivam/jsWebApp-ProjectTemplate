@@ -6,13 +6,19 @@
 		};
 
 		DataAccess.prototype._ajax = function(url, type, data) {
+			var settings = {
+				url: url,
+				type: type,
+				dataType: "json"
+			};
+
+			if(data) {
+				settings.data = JSON.stringfy(data);
+			}
+
 			return Q.Promise(function(resolve){
-			    $.ajax({
-			        url: url,
-			        type: type,
-			        data: data ? JSON.stringfy(data) : data,
-			        dataType: "json"
-			    }).then(function (data, textStatus, jqXHR) {
+			    $.ajax(settings)
+			    .then(function (data, textStatus, jqXHR) {
 			        delete jqXHR.then; // treat xhr as a non-promise
 			        resolve(jqXHR);
 			    }, function (jqXHR, textStatus, errorThrown) {
@@ -22,23 +28,23 @@
 			});
 		};
 
-		DataAccess.prototype.get = function(url, data) {
-			return this._ajax(url, "GET", data);
+		DataAccess.prototype.get = function(url) {
+			return this._ajax(url, "GET");
 		};
 
-		DataAccess.prototype.put = function() {
+		DataAccess.prototype.put = function(url, data) {
 			var defer = Q.defer();
 			
 			return defer.promise;
 		};
 
-		DataAccess.prototype.post = function() {
+		DataAccess.prototype.post = function(url, data) {
 			var defer = Q.defer();
 			
 			return defer.promise;
 		};
 
-		DataAccess.prototype.del = function() {
+		DataAccess.prototype.del = function(url, data) {
 			var defer = Q.defer();
 			
 			return defer.promise;
@@ -48,5 +54,11 @@
 	})();
 
 	S.dataAccess = DataAccess;
+
+	S.dataAccess
+	.get("http://localhost:21214")
+	.then(function(response){
+		console.log(response.responseText);
+	})
 
 })(window, window.$, window.Q, window.S);

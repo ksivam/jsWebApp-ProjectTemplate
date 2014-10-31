@@ -1,7 +1,8 @@
 var http = require('http');
 
 http.createServer(function(req, res) {
-res.setHeader('Connection', 'Transfer-Encoding');
+	res.setHeader('Access-Control-Allow-Origin','http://localhost:21213');
+	res.setHeader('Connection', 'Transfer-Encoding');
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Transfer-Encoding', 'chunked');
 
