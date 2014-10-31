@@ -20,3 +20,7 @@ Notes:
 * Used Q's promise (https://github.com/kriskowal/q) to avoid 'Pyramid of Doom' in JS async programming pattern.
 * Used JQuery, JQuery mobile and knockout JS libraries.
 * Used sublime JsDocs (https://github.com/spadgos/sublime-jsdocs) to generate JsDocs.
+* Used nodejs for server side request/response handling (http://nodejs.org/)
+* For testing used 
+	* Mocha test Fx: http://mochajs.org/
+	* Chai assertion library: http://chaijs.com/
