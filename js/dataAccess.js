@@ -52,6 +52,7 @@
 			return defer.promise;
 		};
 
+		// create a new DataAccess object.
 		return new DataAccess();
 	})();
 
