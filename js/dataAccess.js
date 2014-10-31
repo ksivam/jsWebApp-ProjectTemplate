@@ -16,14 +16,16 @@
 				settings.data = JSON.stringfy(data);
 			}
 
-			return Q.Promise(function(resolve){
+			return Q.Promise(function(resolve, reject) {
 			    $.ajax(settings)
 			    .then(function (data, textStatus, jqXHR) {
-			        delete jqXHR.then; // treat xhr as a non-promise
-			        resolve(jqXHR);
+			        resolve(data);
 			    }, function (jqXHR, textStatus, errorThrown) {
-			        delete jqXHR.then; // treat xhr as a non-promise
-			        resolve(jqXHR);
+			        reject({
+			        	statusCode: jqXHR.status,
+			        	message: errorThrown.message,
+			        	stackTrace: errorThrown.stack
+			        });
 			    });			
 			});
 		};
@@ -58,7 +60,10 @@
 	S.dataAccess
 	.get("http://localhost:21214")
 	.then(function(response){
-		console.log(response.responseText);
+		S.log.write("result: " + JSON.stringify(response));
 	})
+	.catch(function(error){
+		S.log.write("error: " + JSON.stringify(error));
+	});
 
 })(window, window.$, window.Q, window.S);
