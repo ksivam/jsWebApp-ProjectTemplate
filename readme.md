@@ -24,3 +24,7 @@ Notes:
 * For testing used 
 	* Mocha test Fx: http://mochajs.org/
 	* Chai assertion library: http://chaijs.com/
+
+End to end test:
+================
+* Selenium JS webdriver (https://code.google.com/p/selenium/wiki/WebDriverJs)
