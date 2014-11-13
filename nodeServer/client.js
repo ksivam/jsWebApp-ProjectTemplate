@@ -1,4 +1,4 @@
-var Q = require('q\\q.js');
+var Q = require('q/q.js');
 
 var asyncFunc = function() {
 	var defer = Q.defer();

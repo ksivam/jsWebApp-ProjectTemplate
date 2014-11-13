@@ -28,3 +28,12 @@ Notes:
 End to end test:
 ================
 * Selenium JS webdriver (https://code.google.com/p/selenium/wiki/WebDriverJs)
+
+
+Issues:
+=======
+* npm installed modules fails to load in node with error: Error: Cannot find module 'module_name'
+	* Run npm in command line to find out the module global install path
+	* export NODE_PATH=<npm global install path>
+		* Add this path to .bash_profile (windows environment path)
+	* http://stackoverflow.com/questions/12594541/npm-global-install-cannot-find-module
